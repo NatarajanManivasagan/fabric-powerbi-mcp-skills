@@ -59,6 +59,7 @@ npm install -g @microsoft/powerbi-report-authoring-cli @microsoft/powerbi-deskto
 ```
 
 - [ ] **Copy the whole `demo/` folder somewhere safe.** You will modify the model live.
+- [ ] **Fresh clone? Open the PBIP once and click Refresh** before the session. The repo has no data cache, so visuals start blank until the M queries run.
 - [ ] Confirm the Power BI Authoring MCP server (formerly Modeling MCP) is running in read-write mode — `MCP: List Servers` in VS Code.
 - [ ] **Open the PBIP through the CLI, not by double-clicking** (see Gotcha 2):
 

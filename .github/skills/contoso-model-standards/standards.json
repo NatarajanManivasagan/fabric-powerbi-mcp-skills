@@ -1,0 +1,7 @@
+{
+  "keySuffix": "ID",
+  "hideKeys": true,
+  "keySummarizeBy": "none",
+  "exemptDateKeys": true,
+  "keyNamePattern": "(Key|Id|_id|_key)$"
+}
