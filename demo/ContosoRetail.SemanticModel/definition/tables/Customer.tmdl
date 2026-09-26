@@ -1,0 +1,80 @@
+table Customer
+	lineageTag: c122997b-b80e-b288-e369-7e95e130cfba
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 6aa1d0d0-cf1b-3a1d-693a-bb47419f3fc4
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer
+		dataType: string
+		lineageTag: 05cbaf9d-8c53-f4f7-118e-3f3f076c929f
+		summarizeBy: none
+		sourceColumn: Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment
+		dataType: string
+		lineageTag: 52b7ae1f-2c24-274e-423a-38d8c2841cce
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 1929c3e3-eb77-7193-7202-b70af1dbab31
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: ac9867ba-cc49-233f-deec-8301c64b980a
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer = m
+		mode: import
+		source =
+				let
+				    Countries = {"United States", "United Kingdom", "Germany", "France", "India", "Australia", "Canada", "Japan"},
+				    Cities = {"New York", "London", "Berlin", "Paris", "Mumbai", "Sydney", "Toronto", "Tokyo"},
+				    Segments = {"Enterprise", "SMB", "Consumer"},
+				    Names = {"Northwind", "Fabrikam", "Contoso", "Litware", "Adventure", "Proseware", "Tailspin", "Wingtip",
+				             "Blue Yonder", "Coho", "Lucerne", "Trey", "Alpine", "Woodgrove", "Fourth Coffee"},
+				    Rows = List.Transform({1 .. 60}, (k) =>
+				        let
+				            ci = Number.Mod(k - 1, 8),
+				            si = Number.Mod(k - 1, 3),
+				            ni = Number.Mod(k - 1, 15),
+				            suffix = {"Group", "Holdings", "Ltd", "Partners"}{Number.Mod(Number.IntegerDivide(k - 1, 15), 4)}
+				        in
+				            [
+				                CustomerKey = k,
+				                Customer = Names{ni} & " " & suffix,
+				                Segment = Segments{si},
+				                City = Cities{ci},
+				                Country = Countries{ci}
+				            ]
+				    ),
+				    Base = Table.FromRecords(Rows),
+				    Typed = Table.TransformColumnTypes(Base, {
+				        {"CustomerKey", Int64.Type}, {"Customer", type text}, {"Segment", type text},
+				        {"City", type text}, {"Country", type text}
+				    })
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

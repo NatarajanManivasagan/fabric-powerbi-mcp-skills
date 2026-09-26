@@ -1,0 +1,68 @@
+table Metrics
+	lineageTag: f6cdd4c5-59c3-d5e7-832a-9a78ec814bf1
+
+	measure Revenue = SUM ( Sales[NetAmount] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: f481941f-512c-5d04-a79d-b4fe13a6d15f
+
+	measure Cost = SUM ( Sales[CostAmount] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 02fb3396-59c4-b625-048e-71e4dda9a97f
+
+	measure 'Gross Margin' = [Revenue] - [Cost]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: c2be679b-76fa-701a-3f64-ee5326efa47f
+
+	measure 'Margin %' = DIVIDE ( [Gross Margin], [Revenue] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 2fdff1e7-d687-b979-ec57-cd50dd0a1c03
+
+	measure Orders = DISTINCTCOUNT ( Sales[OrderID] )
+		formatString: #,0
+		lineageTag: 1ec731ae-ab52-00ef-45f8-c1096a550807
+
+	measure 'Units Sold' = SUM ( Sales[Quantity] )
+		formatString: #,0
+		lineageTag: 2f0d18ee-7bc6-bc64-86f8-b961827d726b
+
+	measure Customers = DISTINCTCOUNT ( Sales[CustomerKey] )
+		formatString: #,0
+		lineageTag: 4916a480-0319-fc6b-dc15-011ff1349f5a
+
+	measure 'Avg Order Value' = DIVIDE ( [Revenue], [Orders] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7458116c-42d6-48a5-126f-550621dbe942
+
+	measure 'Discount Given' = SUM ( Sales[DiscountAmount] )
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 29169d30-1aef-36c2-6bb1-1e11c9df5fe6
+
+	measure 'Revenue PY' = CALCULATE ( [Revenue], DATEADD ( 'Date'[Date], -1, YEAR ) )
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 71689a9b-33a1-485e-5676-f6e2e3823e89
+
+	measure 'Revenue YoY %' = DIVIDE ( [Revenue] - [Revenue PY], [Revenue PY] )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: f0fb9c0c-e261-f43a-9151-0d4cc49677a2
+
+	column Value
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5f634f21-cafc-bd96-8b4d-54a678b89ae3
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Metrics = m
+		mode: import
+		source =
+				let
+				    Source = #table({"Value"}, {{1}}),
+				    Typed = Table.TransformColumnTypes(Source, {{"Value", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

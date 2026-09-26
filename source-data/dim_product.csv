@@ -1,0 +1,41 @@
+ProdKey,ProdNm,CatNm,SubCatNm,UnitPrc,UnitCst
+1,Headphones 01,Audio,Headphones,32.50,18.52
+2,Laptops 02,Computers,Laptops,45.00,26.55
+3,Chairs 03,Home Office,Chairs,57.50,35.08
+4,Phones 04,Mobile,Phones,70.00,44.10
+5,Smartwatches 05,Wearables,Smartwatches,82.50,53.62
+6,Speakers 06,Audio,Speakers,95.00,63.65
+7,Monitors 07,Computers,Monitors,107.50,59.12
+8,Desks 08,Home Office,Desks,120.00,68.40
+9,Tablets 09,Mobile,Tablets,132.50,78.18
+10,Fitness Bands 10,Wearables,Fitness Bands,145.00,88.45
+11,Headphones 11,Audio,Headphones,157.50,99.22
+12,Laptops 12,Computers,Laptops,170.00,110.50
+13,Chairs 13,Home Office,Chairs,182.50,122.28
+14,Phones 14,Mobile,Phones,195.00,107.25
+15,Smartwatches 15,Wearables,Smartwatches,207.50,118.28
+16,Speakers 16,Audio,Speakers,220.00,129.80
+17,Monitors 17,Computers,Monitors,232.50,141.82
+18,Desks 18,Home Office,Desks,245.00,154.35
+19,Tablets 19,Mobile,Tablets,257.50,167.38
+20,Fitness Bands 20,Wearables,Fitness Bands,270.00,180.90
+21,Headphones 21,Audio,Headphones,282.50,155.38
+22,Laptops 22,Computers,Laptops,295.00,168.15
+23,Chairs 23,Home Office,Chairs,307.50,181.42
+24,Phones 24,Mobile,Phones,320.00,195.20
+25,Smartwatches 25,Wearables,Smartwatches,332.50,209.48
+26,Speakers 26,Audio,Speakers,345.00,224.25
+27,Monitors 27,Computers,Monitors,357.50,239.52
+28,Desks 28,Home Office,Desks,370.00,203.50
+29,Tablets 29,Mobile,Tablets,382.50,218.02
+30,Fitness Bands 30,Wearables,Fitness Bands,395.00,233.05
+31,Headphones 31,Audio,Headphones,407.50,248.58
+32,Laptops 32,Computers,Laptops,420.00,264.60
+33,Chairs 33,Home Office,Chairs,432.50,281.12
+34,Phones 34,Mobile,Phones,445.00,298.15
+35,Smartwatches 35,Wearables,Smartwatches,457.50,251.62
+36,Speakers 36,Audio,Speakers,470.00,267.90
+37,Monitors 37,Computers,Monitors,482.50,284.68
+38,Desks 38,Home Office,Desks,495.00,301.95
+39,Tablets 39,Mobile,Tablets,507.50,319.72
+40,Fitness Bands 40,Wearables,Fitness Bands,20.00,13.00

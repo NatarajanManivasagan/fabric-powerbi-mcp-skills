@@ -1,0 +1,92 @@
+table Product
+	lineageTag: 4bfe2cde-5c26-1396-f0e0-05514c584107
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 346a0b4d-51b4-3955-912c-533662f52259
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: 9e0d1fab-1a37-7a65-8b5b-cf5d512b246a
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 59e19ed6-b728-f4c0-2348-e37213941f41
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subcategory
+		dataType: string
+		lineageTag: f72750d6-ee2a-fd85-a88a-15f1fa50d04d
+		summarizeBy: none
+		sourceColumn: Subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 610cca35-06c3-1b5e-3bec-640513c6349e
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitCost
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 7345bbda-3ea1-a5fc-53e7-191849892dca
+		summarizeBy: sum
+		sourceColumn: UnitCost
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Product = m
+		mode: import
+		source =
+				let
+				    Categories = {"Audio", "Computers", "Home Office", "Mobile", "Wearables"},
+				    SubCats = {
+				        {"Headphones", "Speakers"},
+				        {"Laptops", "Monitors"},
+				        {"Chairs", "Desks"},
+				        {"Phones", "Tablets"},
+				        {"Smartwatches", "Fitness Bands"}
+				    },
+				    Rows = List.Transform({1 .. 40}, (k) =>
+				        let
+				            ci = Number.Mod(k - 1, 5),
+				            si = Number.Mod(Number.IntegerDivide(k - 1, 5), 2),
+				            price = 20 + Number.Mod(k, 40) * 12.5,
+				            cost = Number.Round(price * (0.55 + Number.Mod(k, 7) * 0.02), 2)
+				        in
+				            [
+				                ProductKey = k,
+				                Product = SubCats{ci}{si} & " " & Text.PadStart(Text.From(k), 2, "0"),
+				                Category = Categories{ci},
+				                Subcategory = SubCats{ci}{si},
+				                UnitPrice = price,
+				                UnitCost = cost
+				            ]
+				    ),
+				    Base = Table.FromRecords(Rows),
+				    Typed = Table.TransformColumnTypes(Base, {
+				        {"ProductKey", Int64.Type}, {"Product", type text}, {"Category", type text},
+				        {"Subcategory", type text}, {"UnitPrice", type number}, {"UnitCost", type number}
+				    })
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

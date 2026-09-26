@@ -1,0 +1,61 @@
+CustKey,CustNm,SegNm,CityNm,CntryNm
+1,Northwind Group,Enterprise,New York,United States
+2,Fabrikam Group,SMB,London,United Kingdom
+3,Contoso Group,Consumer,Berlin,Germany
+4,Litware Group,Enterprise,Paris,France
+5,Adventure Group,SMB,Mumbai,India
+6,Proseware Group,Consumer,Sydney,Australia
+7,Tailspin Group,Enterprise,Toronto,Canada
+8,Wingtip Group,SMB,Tokyo,Japan
+9,Blue Yonder Group,Consumer,New York,United States
+10,Coho Group,Enterprise,London,United Kingdom
+11,Lucerne Group,SMB,Berlin,Germany
+12,Trey Group,Consumer,Paris,France
+13,Alpine Group,Enterprise,Mumbai,India
+14,Woodgrove Group,SMB,Sydney,Australia
+15,Fourth Coffee Group,Consumer,Toronto,Canada
+16,Northwind Holdings,Enterprise,Tokyo,Japan
+17,Fabrikam Holdings,SMB,New York,United States
+18,Contoso Holdings,Consumer,London,United Kingdom
+19,Litware Holdings,Enterprise,Berlin,Germany
+20,Adventure Holdings,SMB,Paris,France
+21,Proseware Holdings,Consumer,Mumbai,India
+22,Tailspin Holdings,Enterprise,Sydney,Australia
+23,Wingtip Holdings,SMB,Toronto,Canada
+24,Blue Yonder Holdings,Consumer,Tokyo,Japan
+25,Coho Holdings,Enterprise,New York,United States
+26,Lucerne Holdings,SMB,London,United Kingdom
+27,Trey Holdings,Consumer,Berlin,Germany
+28,Alpine Holdings,Enterprise,Paris,France
+29,Woodgrove Holdings,SMB,Mumbai,India
+30,Fourth Coffee Holdings,Consumer,Sydney,Australia
+31,Northwind Ltd,Enterprise,Toronto,Canada
+32,Fabrikam Ltd,SMB,Tokyo,Japan
+33,Contoso Ltd,Consumer,New York,United States
+34,Litware Ltd,Enterprise,London,United Kingdom
+35,Adventure Ltd,SMB,Berlin,Germany
+36,Proseware Ltd,Consumer,Paris,France
+37,Tailspin Ltd,Enterprise,Mumbai,India
+38,Wingtip Ltd,SMB,Sydney,Australia
+39,Blue Yonder Ltd,Consumer,Toronto,Canada
+40,Coho Ltd,Enterprise,Tokyo,Japan
+41,Lucerne Ltd,SMB,New York,United States
+42,Trey Ltd,Consumer,London,United Kingdom
+43,Alpine Ltd,Enterprise,Berlin,Germany
+44,Woodgrove Ltd,SMB,Paris,France
+45,Fourth Coffee Ltd,Consumer,Mumbai,India
+46,Northwind Partners,Enterprise,Sydney,Australia
+47,Fabrikam Partners,SMB,Toronto,Canada
+48,Contoso Partners,Consumer,Tokyo,Japan
+49,Litware Partners,Enterprise,New York,United States
+50,Adventure Partners,SMB,London,United Kingdom
+51,Proseware Partners,Consumer,Berlin,Germany
+52,Tailspin Partners,Enterprise,Paris,France
+53,Wingtip Partners,SMB,Mumbai,India
+54,Blue Yonder Partners,Consumer,Sydney,Australia
+55,Coho Partners,Enterprise,Toronto,Canada
+56,Lucerne Partners,SMB,Tokyo,Japan
+57,Trey Partners,Consumer,New York,United States
+58,Alpine Partners,Enterprise,London,United Kingdom
+59,Woodgrove Partners,SMB,Berlin,Germany
+60,Fourth Coffee Partners,Consumer,Paris,France

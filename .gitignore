@@ -1,0 +1,6 @@
+# Power BI project local files
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+# skill backups and scratch
+.synonym-backups/
+node_modules/

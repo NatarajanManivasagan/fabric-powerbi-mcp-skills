@@ -1,0 +1,69 @@
+table dim_geography_region_master
+	lineageTag: 2e251c10-ae1f-d3b6-1ea9-a7749d45f8f3
+
+	column GeoKey
+		dataType: int64
+		formatString: 0
+		lineageTag: cbc0dced-877a-43ba-3e3a-bb55e6c27557
+		summarizeBy: sum
+		sourceColumn: GeoKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CntryNm
+		dataType: string
+		lineageTag: 15f21c19-285c-a6a5-1564-7cecf7537581
+		summarizeBy: none
+		sourceColumn: CntryNm
+
+		annotation SummarizationSetBy = Automatic
+
+	column RgnNm
+		dataType: string
+		lineageTag: 056e4055-02d6-1b2c-8183-141b293d75e0
+		summarizeBy: none
+		sourceColumn: RgnNm
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubRgnNm
+		dataType: string
+		lineageTag: 6ec9e6ec-4134-6cda-f7fa-497d4eed9dc9
+		summarizeBy: none
+		sourceColumn: SubRgnNm
+
+		annotation SummarizationSetBy = Automatic
+
+	column PopnCnt
+		dataType: int64
+		formatString: #,0
+		lineageTag: 9677eb56-225f-ca4d-d505-0c62be16f141
+		summarizeBy: sum
+		sourceColumn: PopnCnt
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_geography_region_master = m
+		mode: import
+		source =
+				let
+				    Rows = {
+				        [GeoKey = 1, CntryNm = "United States", RgnNm = "Americas", SubRgnNm = "North America", PopnCnt = 335000000],
+				        [GeoKey = 2, CntryNm = "Canada", RgnNm = "Americas", SubRgnNm = "North America", PopnCnt = 39000000],
+				        [GeoKey = 3, CntryNm = "United Kingdom", RgnNm = "EMEA", SubRgnNm = "Northern Europe", PopnCnt = 67000000],
+				        [GeoKey = 4, CntryNm = "Germany", RgnNm = "EMEA", SubRgnNm = "Western Europe", PopnCnt = 84000000],
+				        [GeoKey = 5, CntryNm = "France", RgnNm = "EMEA", SubRgnNm = "Western Europe", PopnCnt = 68000000],
+				        [GeoKey = 6, CntryNm = "India", RgnNm = "APAC", SubRgnNm = "South Asia", PopnCnt = 1430000000],
+				        [GeoKey = 7, CntryNm = "Australia", RgnNm = "APAC", SubRgnNm = "Oceania", PopnCnt = 26000000],
+				        [GeoKey = 8, CntryNm = "Japan", RgnNm = "APAC", SubRgnNm = "East Asia", PopnCnt = 124000000]
+				    },
+				    Base = Table.FromRecords(Rows),
+				    Typed = Table.TransformColumnTypes(Base, {
+				        {"GeoKey", Int64.Type}, {"CntryNm", type text}, {"RgnNm", type text},
+				        {"SubRgnNm", type text}, {"PopnCnt", Int64.Type}
+				    })
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

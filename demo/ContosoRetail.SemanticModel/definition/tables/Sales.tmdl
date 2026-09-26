@@ -1,0 +1,130 @@
+table Sales
+	lineageTag: 9ab16acd-7774-4d09-8d2e-1a8417f40b28
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 0947ec66-17c6-451a-7384-c0854d07dd86
+		summarizeBy: none
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b8582423-cafb-f1b1-8fc4-c54b3608366d
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: dc1cc366-1769-592b-9baa-2175cd96f2e4
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 07f31894-e62e-246d-327e-59e14ca762af
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Channel
+		dataType: string
+		lineageTag: 7c68f667-8bb1-ccb6-2429-7f519dfbe069
+		summarizeBy: none
+		sourceColumn: Channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: d00af795-6837-3da5-9574-1d918c0a3a92
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column NetAmount
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 9058afe8-56b5-8538-cfa6-343ac2a82819
+		summarizeBy: sum
+		sourceColumn: NetAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostAmount
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: e2786bc2-7e3f-90df-9b65-660dacebf0bc
+		summarizeBy: sum
+		sourceColumn: CostAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountAmount
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: f07b995b-6edd-9572-f290-eee0e5eb38a6
+		summarizeBy: sum
+		sourceColumn: DiscountAmount
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				    N = 3200,
+				    StartDate = #date(2024, 1, 1),
+				    Channels = {"Online", "Retail", "Partner"},
+				    Rows = List.Transform({0 .. N - 1}, (i) =>
+				        let
+				            DayOffset = Number.Mod(i * 211, 940),
+				            Dt = Date.AddDays(StartDate, DayOffset),
+				            Pk = 1 + Number.Mod(i * 17, 40),
+				            Ck = 1 + Number.Mod(i * 29, 60),
+				            Qty = 1 + Number.Mod(i * 13, 12),
+				            DiscPct = Number.Mod(i * 11, 4) * 0.05,
+				            Price = 20 + Number.Mod(Pk, 40) * 12.5,
+				            Cost = Number.Round(Price * (0.55 + Number.Mod(Pk, 7) * 0.02), 2),
+				            Mth = Date.Month(Dt),
+				            Season = if Mth = 12 then 1.55 else if Mth = 11 then 1.3 else if Mth = 1 then 0.8 else if List.Contains({6, 7}, Mth) then 0.85 else 1,
+				            Trend = 1 + (DayOffset / 940) * 0.45,
+				            Factor = Season * Trend
+				        in
+				            [
+				                OrderID = 100000 + Number.IntegerDivide(i, 3),
+				                Date = Dt,
+				                ProductKey = Pk,
+				                CustomerKey = Ck,
+				                Channel = Channels{Number.Mod(i * 7, 3)},
+				                Quantity = Qty,
+				                NetAmount = Number.Round(Qty * Price * (1 - DiscPct) * Factor, 2),
+				                CostAmount = Number.Round(Qty * Cost * Factor, 2),
+				                DiscountAmount = Number.Round(Qty * Price * DiscPct * Factor, 2)
+				            ]
+				    ),
+				    Base = Table.FromRecords(Rows),
+				    Typed = Table.TransformColumnTypes(Base, {
+				        {"OrderID", Int64.Type}, {"Date", type date}, {"ProductKey", Int64.Type},
+				        {"CustomerKey", Int64.Type}, {"Channel", type text}, {"Quantity", Int64.Type},
+				        {"NetAmount", type number}, {"CostAmount", type number}, {"DiscountAmount", type number}
+				    })
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

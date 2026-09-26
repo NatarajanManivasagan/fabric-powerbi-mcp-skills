@@ -1,0 +1,117 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/powerbi-desktop-samples/main/Report%20Theme%20JSON%20Schema/reportThemeSchema-2.155.json",
+  "name": "ContosoSignal-2b3eeb46.json",
+  "dataColors": [
+    "#1F9E96",
+    "#2D5F8B",
+    "#E0A526",
+    "#C0724A",
+    "#6B7FA8",
+    "#8FBF8A",
+    "#B05A78",
+    "#4A5568",
+    "#7FB3A8",
+    "#A08CC0"
+  ],
+  "good": "#2E9E6B",
+  "neutral": "#E0A526",
+  "bad": "#C0504D",
+  "maximum": "#1F9E96",
+  "center": "#E0A526",
+  "minimum": "#E4F1EF",
+  "null": "#C9CEDB",
+  "firstLevelElements": "#14182E",
+  "secondLevelElements": "#5B6478",
+  "thirdLevelElements": "#E1E5EF",
+  "fourthLevelElements": "#8B93A7",
+  "background": "#FFFFFF",
+  "secondaryBackground": "#EFF2F7",
+  "tableAccent": "#1F9E96",
+  "textClasses": {
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#14182E"
+    },
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 30,
+      "color": "#14182E"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 11,
+      "color": "#5B6478"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#14182E"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#E1E5EF"
+              }
+            },
+            "radius": 10
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": false
+          }
+        ],
+        "padding": [
+          {
+            "top": 8,
+            "bottom": 8,
+            "left": 8,
+            "right": 8
+          }
+        ],
+        "title": [
+          {
+            "show": true,
+            "fontColor": {
+              "solid": {
+                "color": "#14182E"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "alignment": "left",
+            "fontSize": 12,
+            "fontFamily": "Segoe UI Semibold",
+            "titleWrap": false
+          }
+        ]
+      }
+    }
+  }
+}

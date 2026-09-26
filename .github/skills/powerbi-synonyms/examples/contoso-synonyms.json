@@ -1,0 +1,27 @@
+{
+  "Metrics": {
+    "Revenue": ["turnover", "net sales", "income"],
+    "Gross Margin": ["profit", "gross profit"],
+    "Margin %": ["margin rate", "profitability"],
+    "Orders": ["order count", "number of orders"],
+    "Units Sold": ["quantity sold", "volume"],
+    "Avg Order Value": ["AOV", "average basket", "basket size"],
+    "Discount Given": ["discounts", "markdowns"],
+    "Revenue YoY %": ["growth", "year over year growth"]
+  },
+  "Customer": {
+    "_table": ["client", "account"],
+    "Segment": ["customer type", "tier"]
+  },
+  "Product": {
+    "_table": ["item", "SKU"],
+    "Category": ["product line"]
+  },
+  "Sales": {
+    "_table": ["transactions", "order lines"],
+    "Channel": ["sales channel", "route to market"]
+  },
+  "Date": {
+    "_table": ["calendar"]
+  }
+}

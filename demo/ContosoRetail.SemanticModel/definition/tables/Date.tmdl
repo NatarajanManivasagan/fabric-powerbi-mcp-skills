@@ -1,0 +1,91 @@
+table Date
+	lineageTag: 0b8d686d-6649-539c-24d6-9720345788a7
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 84b94c0b-b782-ed3b-e2f0-c8dcde4d76f4
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: fa2bab2b-a01e-2fb2-3db9-ab1e72c60f17
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: d1be38df-83b7-eb95-8d2b-7948c467cfc7
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c76bc4e9-821b-ab3f-da0c-a188210564a6
+		summarizeBy: none
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 4db1a7ed-6638-272d-2e98-23d9e9645a2e
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: MonthNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthYearSort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1e4f83d8-71ea-2aa4-afba-d8e94c3c9a34
+		summarizeBy: none
+		sourceColumn: MonthYearSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthYear
+		dataType: string
+		lineageTag: 691b5cb9-d253-f71e-84ff-64ba12ea3653
+		summarizeBy: none
+		sourceColumn: MonthYear
+		sortByColumn: MonthYearSort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = m
+		mode: import
+		source =
+				let
+				    StartDate = #date(2024, 1, 1),
+				    EndDate   = #date(2026, 12, 31),
+				    DayCount  = Duration.Days(EndDate - StartDate) + 1,
+				    Dates     = List.Dates(StartDate, DayCount, #duration(1, 0, 0, 0)),
+				    Base      = Table.FromList(Dates, Splitter.SplitByNothing(), {"Date"}),
+				    Typed     = Table.TransformColumnTypes(Base, {{"Date", type date}}),
+				    Added     = Table.AddColumn(Typed, "Year", each Date.Year([Date]), Int64.Type),
+				    AddQ      = Table.AddColumn(Added, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+				    AddMN     = Table.AddColumn(AddQ, "MonthNumber", each Date.Month([Date]), Int64.Type),
+				    AddM      = Table.AddColumn(AddMN, "Month", each Date.ToText([Date], "MMM"), type text),
+				    AddMYS    = Table.AddColumn(AddM, "MonthYearSort", each Date.Year([Date]) * 100 + Date.Month([Date]), Int64.Type),
+				    AddMY     = Table.AddColumn(AddMYS, "MonthYear", each Date.ToText([Date], "MMM yyyy"), type text)
+				in
+				    AddMY
+
+	annotation PBI_ResultType = Table
+
