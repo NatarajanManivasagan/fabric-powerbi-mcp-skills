@@ -26,6 +26,7 @@ demo/
   shots/                           fallback screenshots of both report pages
 source-data/                       the same data as CSVs, for rebuilding the model from scratch
 deck/PowerBI-Fabric-MCP-30min.pptx the session deck
+videos/                            the two recorded skill runs (MP4, no audio)
 ```
 
 ## Quick start
@@ -83,6 +84,15 @@ and Part 2 of the blog.
 The agent saves, runs the read-only checker, shows a plan, waits for approval, renames and hides the
 keys through the Power BI Authoring MCP server, and checks again. Run the checker yourself with
 `node .github/skills/contoso-model-standards/scripts/check-standards.js --model demo/ContosoRetail.SemanticModel`.
+
+## Videos
+
+Two unscripted runs in VS Code with GitHub Copilot, captioned, with waiting time cut and nothing else edited:
+
+| Video | What it shows |
+|---|---|
+| [`videos/powerbi-synonyms-demo.mp4`](videos/powerbi-synonyms-demo.mp4) (3 min) | A plain-English prompt → the agent picks `powerbi-synonyms`, drafts a map, asks for approval, dry-runs, writes and verifies 31 synonyms → the terms appear in Power BI Desktop |
+| [`videos/model-standards-demo.mp4`](videos/model-standards-demo.mp4) (2 min) | `contoso-model-standards`: checker finds 11 issues on 5 join keys → plan → approval → renames and hides the keys through the Power BI Authoring MCP server → checker clean |
 
 ## Versions
 
