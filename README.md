@@ -87,6 +87,8 @@ keys through the Power BI Authoring MCP server, and checks again. Run the checke
 
 ## Videos
 
+**Watch them in the browser:** <https://natarajanmanivasagan.github.io/fabric-powerbi-mcp-skills/videos/>
+
 Two unscripted runs in VS Code with GitHub Copilot, captioned, with waiting time cut and nothing else edited:
 
 | Video | What it shows |

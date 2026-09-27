@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skill runs: Power BI + Fabric MCP</title>
+<meta name="description" content="Two recorded runs of Power BI skills in VS Code with GitHub Copilot and the Power BI Authoring MCP server.">
+<style>
+  :root { --ink:#14182E; --mute:#5b6275; --line:#DFE2EC; --amber:#F2C230; --teal:#1F9E96; --bg:#ffffff; --card:#F4F5F9; }
+  @media (prefers-color-scheme: dark) { :root { --ink:#E8EAF2; --mute:#A3AABD; --line:#2c3350; --bg:#10131f; --card:#181c2c; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { font: 700 30px/1.2 Cambria, Georgia, serif; margin: 0 0 6px; }
+  .bar { width: 72px; height: 4px; background: var(--amber); margin: 10px 0 18px; }
+  p.lead { color: var(--mute); margin: 0 0 28px; }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 0 0 28px; }
+  h2 { font: 700 21px/1.3 Cambria, Georgia, serif; margin: 0 0 4px; }
+  .meta { color: var(--mute); font-size: 14px; margin: 0 0 12px; }
+  video { width: 100%; height: auto; border-radius: 8px; background: #000; display: block; }
+  a { color: var(--teal); }
+  footer { color: var(--mute); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Skills in practice: two real runs</h1>
+  <div class="bar"></div>
+  <p class="lead">Recorded in VS Code with GitHub Copilot, the Power BI Authoring MCP server and Power BI Desktop.
+    Waiting time is cut; nothing else is edited. No audio, captions on screen.
+    Everything used here is in the <a href="https://github.com/NatarajanManivasagan/fabric-powerbi-mcp-skills">companion repo</a>.</p>
+
+  <section id="synonyms">
+    <h2>powerbi-synonyms: adding Q&amp;A and data-agent synonyms</h2>
+    <p class="meta">3 min · a plain-English prompt, a drafted map, approval, dry run, write and verify, then the terms in Desktop</p>
+    <video controls preload="metadata" src="powerbi-synonyms-demo.mp4"></video>
+  </section>
+
+  <section id="standards">
+    <h2>contoso-model-standards: team rules for join keys</h2>
+    <p class="meta">2 min · checker finds 11 issues on 5 keys, plan, approval, renames through the MCP server, clean check</p>
+    <video controls preload="metadata" src="model-standards-demo.mp4"></video>
+  </section>
+
+  <footer>By Natarajan Manivasagan, with co-authors Praful Potphode and Hardik Sri ·
+    <a href="https://github.com/NatarajanManivasagan/fabric-powerbi-mcp-skills">github.com/NatarajanManivasagan/fabric-powerbi-mcp-skills</a></footer>
+</main>
+</body>
+</html>
